@@ -1,0 +1,26 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: electro_atoui
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: satoui.dev@gmail.com
+    mailer_password: ******
+    mailer_port: 587
+    mailer_encryption: tls
+    locale: fr
+    secret: DGFDHGFJGcxbgfgfFGDF451HJHGdfdsg
+    debug_toolbar: true
+    debug_redirects: false
+    use_assetic_controller: true
+twig:
+    globals:
+        telephone: '00 216 71 452 123'
+        fax: '00 216 71 452 124'
+        adresse: 'Rue Mostabah Jarboua, 3212 Bir Lahmer - Tataouine'
+        logo: 'Electro El Atoui '
+        pathDefault: 'http://localhost/electro_atoui/web/'

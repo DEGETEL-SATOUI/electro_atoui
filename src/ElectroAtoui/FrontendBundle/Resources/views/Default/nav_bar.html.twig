@@ -1,0 +1,22 @@
+<ul class="list-inline">
+    <li class="first">
+      <a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i>
+      <span class="hidden-sm">Acceuil</span></a>
+    </li>
+    {% for category in categories %}
+        <li>
+          <a href="{{ path('_category_detail', { 'slug' : category.slug }) }}" title="{{ category.name }}">
+            <span class="hidden-sm">{{ category.name }}</span>
+          </a>
+        </li>
+    {% endfor %}
+    <li>
+      <a href="{{ path('_cart') }}" title="Mon Panier"><i class="material-design-shopping232"></i>
+        <span class="hidden-sm">Mon Panier ({{ cart_count }})</span>
+      </a>
+    </li>
+    <li>
+      <a href="{{ path('_contact') }}" title="Nous Contacter"><i class="fa fa-share"></i>
+      <span class="hidden-sm">Nous Contacter</span></a>
+    </li>
+</ul>

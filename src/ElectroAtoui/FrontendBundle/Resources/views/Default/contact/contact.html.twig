@@ -1,0 +1,101 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+
+{% block titre %}Electro El Atoui - Nous contacter{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Nous contacter</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<h1>Nous contacter</h1>
+<h3>Notre Adresse</h3>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-3"><strong>Electro El Atoui</strong>
+                <br>
+                <address>Rue Mostabah Jarboua, 3212 Bir Lahmer - Tataouine </address>
+                <a href="" target="_blank" class="btn btn-info"><i class="fa fa-map-marker"></i> Notre position</a>
+            </div>
+            <div class="col-sm-3"><strong>Téléphone</strong>
+                <br> 00 216 71 452 123<br><br>
+                <strong>Fax</strong>
+                <br> 00 216 71 452 124
+            </div>
+            <div class="col-sm-3">
+                <strong>Heures d'ouverture</strong>
+                <br> Lundi : 8h-18h
+                <br> Mardi : 8h-18h
+                <br> Mercredi : 8h-18h
+                <br> Jeudi : 8h-18h
+                <br> Vendredi : 8h-18h
+                <br> Samedi : 8h-18h
+                <br> Dimanche : 8h-13h
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="{{ path('_contact') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <fieldset>
+        <h3>Contact</h3>
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                {{ flashMessage }}
+                <button type="button" class="close" data-dismiss="alert">×</button>
+            </div>
+        {% endfor %}
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-name">Votre Nom</label>
+            <div class="col-sm-10">
+                {{ form_widget(form.name) }}
+                {% if form_errors(form.name) %}
+                  <div class="text-danger">{{ form_errors(form.name) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-email">Votre Adresse mail</label>
+            <div class="col-sm-10">
+                {{ form_widget(form.email) }}
+                {% if form_errors(form.email) %}
+                  <div class="text-danger">{{ form_errors(form.email) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-subject">Sujet</label>
+            <div class="col-sm-10">
+                {{ form_widget(form.subject) }}
+                {% if form_errors(form.subject) %}
+                  <div class="text-danger">{{ form_errors(form.subject) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-enquiry">Message</label>
+            <div class="col-sm-10">
+                {{ form_widget(form.enquiry) }}
+                {% if form_errors(form.enquiry) %}
+                  <div class="text-danger">{{ form_errors(form.enquiry) }}</div>
+                {% endif %}
+            </div>
+        </div>
+    {{ form_rest(form) }}
+    <div class="buttons">
+        <div class="pull-right">
+            <input class="btn btn-primary" type="submit" value="Envoyer">
+        </div>
+    </div>
+    </fieldset>
+</form>
+{% endblock %}
+
+{% block boxes %}
+
+{% endblock %}

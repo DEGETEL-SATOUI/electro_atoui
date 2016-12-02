@@ -1,0 +1,26 @@
+{% extends "FrontendBundle:Default:account.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block titre %}Electro El Atoui - Mon compte{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_backend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Mon compte</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <div class="alert alert-success">
+       <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    </div>
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+        {% if targetUrl is not empty %}
+            <p><a href="{{ path('_user_account') }}">
+            {{ 'registration.back'|trans }}</a></p>
+        {% endif %}
+    {% endif %}
+{% endblock %}

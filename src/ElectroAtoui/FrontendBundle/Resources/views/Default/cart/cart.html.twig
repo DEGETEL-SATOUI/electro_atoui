@@ -1,0 +1,116 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+
+{% block titre %}Electro El Atoui - Mon panier{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Panier</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<h1>Mon Panier</h1>
+
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+        <button type="button" class="close" data-dismiss="alert">×</button>
+    </div>
+{% endfor %}
+
+{% if cart is null or cart.CountItems == 0 %}
+    <div class="table-responsive">
+        <div class="alert alert-warning">
+            <p class="text-center">Votre panier est vide!</p>
+        </div>
+    </div>
+{% else %}
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td class="text-center">Image</td>
+                    <td class="text-left">Nom du produit</td>
+                    <td class="text-left">Quantité</td>
+                    <td class="text-right">Unité prix</td>
+                    <td class="text-right">Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for data in cart.items %}
+                    <tr id="product-{{ data.product.id }}">
+                        <td class="text-center">
+                            <div class="image">
+                                <a href="{{ path('_product_detail', { 'slug' : data.product.slug }) }}">
+                                    <img src="{{ '/uploads/product.png' | imagine_filter('product_47') }}" class="img-thumbnail">
+                                </a>
+                            </div>
+                        </td>
+                        <td class="text-left">
+                            <a href="{{ path('_product_detail', { 'slug' : data.product.slug }) }}">{{ data.product.name }}</a><br><br>
+                            <small id="p-s-{{ data.product.id }}" >{{ data.product_rest }} article(s) restant</small>
+                        </td>
+                        <td class="text-left">
+                            <div class="input-group btn-block" style="max-width: 200px;">
+                                <p class="clearfix">
+                                    <input type="number" id="cart-q-{{ data.product.id }}" value="{{ data.quantity }}" min="1" max="{{ data.product.quantity }}" class="form-control cart-q">
+                                </p>
+                                <div>
+                                    <button type="button" id="cart-m-{{ data.product.id }}" data-loading-text="Loading..." class="btn btn-primary" onclick="updateItem('{{ data.product.id }}');">
+                                        <i class="fa fa-refresh"></i>
+                                    </button>
+                                    <button type="button" id="cart-d-{{ data.product.id }}" data-loading-text="Loading..." class="btn btn-danger" onclick="removeItem('{{ data.product.id }}');">
+                                        <i class="fa fa-times-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="text-right">
+                            <div class="price">{{ data.product.price }} DT</div>
+                        </td>
+                        <td class="text-right">
+                            <div id="total_price_{{ data.product.id }}" class="price price-total">{{ data.product_total }} DT</div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-4 col-sm-offset-8">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td class="text-right"><strong>Sub-Total:</strong>
+                        </td>
+                        <td class="text-right">
+                            <div id="total_sub_price" class="price">{{ cart.total }} DT</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right"><strong>Total:</strong>
+                        </td>
+                        <td class="text-right">
+                            <div id="total_price" class="price">{{ cart.total }} DT</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <div class="pull-left">
+            <a href="{{ path('_frontend_homepage') }}" class="btn btn-default">Continuer mes achats</a>
+        </div>
+        <div class="pull-right">
+            <a href="" class="btn btn-primary">Passer la commande</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

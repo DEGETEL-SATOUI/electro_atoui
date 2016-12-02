@@ -1,0 +1,14 @@
+backend:
+    resource: "@BackendBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+frontend:
+    resource: "@FrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
+api:
+    resource: "@CoreBundle/Resources/config/routing.yml"
+    prefix:   /api
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"

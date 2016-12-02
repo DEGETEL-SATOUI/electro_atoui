@@ -1,0 +1,58 @@
+{% extends "FrontendBundle:Default:account.html.twig" %}
+
+{% block titre %}Electro El Atoui - Mes préférés{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><a href="{{ path('_user_account') }}"><span>Mon compte</span></a></li>
+  <li><span>Mes préférés</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<h1>Mes préférés</h1>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+     <thead>
+        <tr>
+           <td class="text-center">Image</td>
+           <td class="text-left">Nom de produit</td>
+           <td class="text-left">Catégorie</td>
+           <td class="text-right">Stock</td>
+           <td class="text-right">Prix</td>
+           <td class="text-right">Action</td>
+        </tr>
+     </thead>
+     <tbody>
+        <tr>
+           <td class="text-center">
+            <a href="">
+                <img src="" alt="" title="">
+            </a>
+           </td>
+           <td class="text-left">
+            <a href="">Produit 1</a>
+           </td>
+           <td class="text-left">Categ 3</td>
+           <td class="text-right">en Stock</td>
+           <td class="text-right">
+              <div class="price">
+                 <b>80.00 Dt</b> <s>100.00 Dt</s>
+              </div>
+           </td>
+           <td class="text-right">
+            <button type="button" onclick="" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Ajouter au panier">
+                <i class="material-design-shopping232"></i>
+            </button>
+              <a href="" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Supprimer">
+                <i class="fa fa-times"></i>
+              </a>
+           </td>
+        </tr>
+     </tbody>
+  </table>
+</div>
+{% endblock %}

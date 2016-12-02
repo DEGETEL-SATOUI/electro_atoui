@@ -1,0 +1,136 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% block titre %}Electro El Atoui - {{ category.name }}{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  {% for categ in category.parents %}
+    <li><a href="{{ path('_category_detail', { 'slug' : categ.slug }) }}">{{ categ.name }}</a></li>
+  {% endfor %}
+  <li><span>{{ category.name }}</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <h2>{{ category.name }}</h2>
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="image">
+                <img
+                    src="{{ '/uploads/product.png' | imagine_filter('product_190') }}"
+                    alt="{{ category.name }}"
+                    class="img-thumbnail" />
+            </div>
+        </div>
+        <div class="col-sm-10">
+            {{ category.description }}
+        </div>
+    </div>
+    <hr>
+
+    {% if products|length != 0 %}
+    <div class="product-filter clearfix">
+        <div class="row">
+            <div class="col-md-2">
+                <label class="control-label" for="input-sort">Trier par:</label>
+            </div>
+            <div class="col-md-3">
+                <select id="input-sort" class="form-control col-sm-3">
+                    {{ knp_pagination_sortable(products, 'Nom A-Z', 'name', {'sort': 'name', 'direction': 'asc'}) }}
+                    {{ knp_pagination_sortable(products, 'Nom Z-A', 'name', {'sort': 'name', 'direction': 'desc'}) }}
+                    {{ knp_pagination_sortable(products, 'Prix (moins chére - chére)', 'price', {'sort': 'price', 'direction': 'asc'}) }}
+                    {{ knp_pagination_sortable(products, 'Prix (chére - moins chére)', 'price', {'sort': 'price', 'direction': 'desc'}) }}
+                </select>
+            </div>
+            <div class="col-md-2"></div>
+            <div class="col-md-2"></div>
+            <div class="col-md-3 text-right">
+                <div class="button-view">
+                    <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="List"><i class="fa fa-th-list"></i>
+                    </button>
+                    <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="Grid"><i class="fa fa-th"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-cat clearfix">
+        {{ knp_pagination_render(products) }}
+    </div>
+    <div class="row">
+        {% for product in products %}
+        <div class="product-layout product-list col-xs-12">
+            <div class="product-thumb">
+                <div class="image">
+                   <a class="lazy lazy-loaded" style="padding-bottom: 100%" href="{{ path('_product_detail', { 'slug' : product.slug }) }}">
+                        <img
+                            alt="Dolor sit amet"
+                            title="Dolor sit amet"
+                            class="img-responsive"
+                            data-src="{{ '/uploads/product.png' | imagine_filter('product_220') }}"
+                            src="{{ '/uploads/product.png' | imagine_filter('product_220') }}">
+                    </a>
+                </div>
+                <div>
+                    <div class="caption">
+                        <div class="name name-product"><a href="{{ path('_product_detail', { 'slug' : product.slug }) }}">{{ product.name }}</a>
+                        </div>
+                        <div class="description">{{ product.shortDescription[:30] ~ '...' }}</div>
+                        <div class="rating">
+                            {% for index in 1..5 %}
+                                {% if index <= product.rateValue %}
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                        <i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="price price-product">
+                            {% if product.forSale %}
+                              <span class="price-new">{{ product.salePrice }} DT</span>
+                              <span class="price-old">{{ product.price }} DT</span>
+                            {% else %}
+                              <span class="price-new">{{ product.price }} DT</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="cart-button">
+                        <a class="product-btn-add" href="{{ path('_product_detail', { 'slug' : product.slug }) }}">
+                            <span class="hidden-xs hidden-sm hidden-md">Je le veux</span>
+                            <i class="material-design-shopping232"></i>
+                        </a>
+                        <button class="product-btn" type="button" data-toggle="tooltip" title="Ajouter au favories">
+                            <i class="fa fa-heart"></i>
+                        </button>
+                        <button class="product-btn" type="button" data-toggle="tooltip" title="Comparer ce produit">
+                            <i class="fa fa-exchange"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="nav-cat clearfix">
+        {{ knp_pagination_render(products) }}
+    </div>
+
+    <script type="text/javascript">
+        $('#input-sort').on('change', function() {
+          $(location).attr('href', $('option:selected', this).attr('href'));
+        });
+    </script>
+    {% else %}
+        Aucun produit
+    {% endif %}
+{% endblock %}
+
+{% block boxes %}{% endblock %}

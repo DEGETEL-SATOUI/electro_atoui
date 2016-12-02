@@ -1,0 +1,17 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block titre %}Electro El Atoui - Mon compte{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_backend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Inscription</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <div class="alert alert-success">{{ 'registration.check_email'|trans({'%email%': user.email}) }}</div>
+{% endblock %}

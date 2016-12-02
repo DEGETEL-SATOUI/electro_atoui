@@ -1,0 +1,46 @@
+fos_elastica:
+    clients:
+        default: { host: localhost, port: 9200 }
+    serializer:
+        callback_class: FOS\ElasticaBundle\Serializer\Callback
+        serializer: serializer
+    indexes:
+        electro_el_atoui:
+            client: default
+            types:
+                product:
+                    mappings:
+                        id:
+                            type: integer
+                        quantity:
+                            type: integer
+                        price:
+                            type: float
+                        sale_price:
+                            type: float
+                        for_sale:
+                            type: boolean
+                        is_active:
+                            type: boolean
+                        reference: ~
+                        name: { boost: 7 }
+                        slug: { boost: 7 }
+                        description: { boost: 3 }
+                        images:
+                            type: "nested"
+                            properties:
+                                name: { boost: 3 }
+                        categories:
+                            type: "nested"
+                            properties:
+                                name: { boost: 3 }
+                    persistence:
+                        driver: orm
+                        model: ElectroAtoui\CoreBundle\Entity\Product
+                        identifier: id
+                        provider: ~
+                        listener:
+                            insert: true
+                            update: true
+                            delete: true
+                        finder: ~

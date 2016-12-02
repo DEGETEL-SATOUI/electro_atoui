@@ -1,0 +1,3 @@
+_category_detail:
+    path:     /{slug}
+    defaults: { _controller: FrontendBundle:Category:detail }

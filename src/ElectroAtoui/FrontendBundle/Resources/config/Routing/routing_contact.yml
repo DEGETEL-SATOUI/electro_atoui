@@ -1,0 +1,4 @@
+_contact:
+    path:     /
+    defaults: { _controller: FrontendBundle:Contact:contact }
+

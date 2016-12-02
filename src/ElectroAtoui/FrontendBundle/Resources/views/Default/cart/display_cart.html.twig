@@ -1,0 +1,74 @@
+<div id="cart" class="cart">
+{% if cart is null or cart.CountItems == 0 %}
+<button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+    <i class="material-design-shopping232"></i>
+    <span id="cart-total">0 produit</span>
+    <span id="cart-total2">0</span>
+</button>
+<ul class="dropdown-menu pull-right">
+  <li>
+    <p class="text-center">Votre panier est vide!</p>
+  </li>
+</ul>
+{% else %}
+<div id="cart" class="cart">
+    <button type="button" data-toggle="dropdown" data-loading-text="Loading..." class="dropdown-toggle">
+        <i class="material-design-shopping232"></i>
+        <span id="cart-total">{{ cart.CountItems }} produit(s)</span>
+        <span id="cart-total2">{{ cart.CountItems }}</span>
+    </button>
+    <ul class="dropdown-menu pull-right">
+        <li>
+            <div>
+                <table class="table">
+                    <tbody>
+                        {% for data in cart.Items %}
+                        <tr>
+                            <td class="text-center">
+                                <div class="image">
+                                    <a href="{{ path('_product_detail', { 'slug' : data.product.slug }) }}">
+                                        <img
+                                            src="{{ '/uploads/product.png' | imagine_filter('product_47') }}"
+                                            alt="{{ data.product.name }}"
+                                            title="{{ data.product.name }}" class="img-thumbnail">
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="text-left">
+                                <div class="name">
+                                    <a href="{{ path('_product_detail', { 'slug' : data.product.slug }) }}">{{ data.product.name }}</a>
+                                </div>
+                                <div>{{ data.quantity }} x <span class="price-cart">{{ data.product.price }} DT</span></div>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" onclick="removeCartItem('{{ data.product.id }}');" title="supprimer" class="btn btn-danger btn-xs">
+                                  <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </li>
+        <li>
+            <div>
+                <table class="table total">
+                    <tbody>
+                        <tr>
+                            <td class="text-right"><strong>Total</strong>
+                            </td>
+                            <td class="text-right">{{ cart.Total }} DT</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-right">
+                    <a class="btn btn-primary" href="{{ path('_cart') }}">  Panier</a>
+                    <a class="btn btn-primary" href="">  Payer</a>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+{% endif %}
+</div>

@@ -1,0 +1,44 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block titre %}Electro El Atoui - Mot de passe oublié{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_backend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Mot de passe oublié</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <h1>Mot de passe oublié?</h1>
+    <p>Entrez l'adresse e -mail associée à votre compte . Cliquez sur valider pour recevoir votre mot de passe envoyé par courriel à vous.</p>
+    <form action="{{ path('fos_user_resetting_send_email') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <fieldset>
+            <legend>Votre adresse mail</legend>
+            {% if invalid_username is defined %}
+              <div class="alert alert-danger fade in">
+                <button class="close" data-dismiss="alert" aria-label="close">&times;</button>
+                {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
+              </div>
+            {% endif %}
+            <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-email">Adresse e-mail</label>
+                <div class="col-sm-10">
+                    <input type="text" name="username" placeholder="Adresse e-mail" id="input-email" class="form-control">
+                </div>
+            </div>
+        </fieldset>
+        <div class="buttons clearfix">
+            <div class="pull-left">
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">Retour</a>
+            </div>
+            <div class="pull-right">
+                <input type="submit" value="Continuer" class="btn btn-primary">
+            </div>
+        </div>
+    </form>
+{% endblock %}
+

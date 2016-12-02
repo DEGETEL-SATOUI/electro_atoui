@@ -1,0 +1,36 @@
+{% extends "FrontendBundle:Default:account.html.twig" %}
+
+{% block titre %}Electro El Atoui - Mes adresses{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><a href="{{ path('_user_account') }}"><span>Mon compte</span></a></li>
+  <li><span>Mes adresses</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<h1>Mes adresses</h1>
+
+<table class="table table-bordered table-hover">
+  <tbody>
+     <tr>
+        <td class="text-left">
+            Atoui Sami<br>
+            rue paris<br>
+            75001 Paris<br>
+            France, Metropolitan
+        </td>
+        <td class="text-right">
+            <a href="{{ path('_user_update_address') }}" class="btn btn-info">Modifier</a> &nbsp;
+            <a href="" class="btn btn-danger">Supprimer</a></td>
+     </tr>
+  </tbody>
+</table>
+
+<div class="buttons clearfix">
+  <div class="pull-right"><a href="{{ path('_user_add_address') }}" class="btn btn-primary">Ajouter une nouvelle adresse</a></div>
+</div>
+{% endblock %}

@@ -1,0 +1,122 @@
+{% extends "FrontendBundle:Default:account.html.twig" %}
+
+{% block titre %}Electro El Atoui - Commande{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><a href="{{ path('_user_account') }}"><span>Mon compte</span></a></li>
+  <li><a href="{{ path('_user_orders') }}"><span>Mes commandes</span></a></li>
+  <li><span>Commande </span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<h1>Commande</h1>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td class="text-left" colspan="2">Détail de la commande</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-left" style="width: 50%;">
+            <b>Référence :</b> ****
+            <br>
+                <b>Date d'ajout :</b> 09/01/2016
+            </td>
+            <td class="text-left">
+                <b>Livraison :</b> ****
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td class="text-left" style="width: 50%;">Adresse</td>
+            <td class="text-left">Adresse de livraison</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-left">Atoui Sami
+                <br>rue Paris
+                <br>75001 Paris
+                <br>France, Metropolitan
+            </td>
+            <td class="text-left">Atoui Sami
+                <br>rue Paris
+                <br>75001 Paris
+                <br>France, Metropolitan
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td class="text-left">Nom de produit</td>
+                <td class="text-left">Catégorie</td>
+                <td class="text-right">Quantité</td>
+                <td class="text-right">Prix</td>
+                <td class="text-right">Total</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-left">Produit 1</td>
+                <td class="text-left">Categ 3</td>
+                <td class="text-right">1</td>
+                <td class="text-right">110.00 Dt</td>
+                <td class="text-right">110.00 Dt</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-right">
+                    <b>Sous-Total</b>
+                </td>
+                <td class="text-right">110.00 Dt</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-right">
+                    <b>Frais de livraison</b>
+                </td>
+                <td class="text-right">5.00 Dt</td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td class="text-right">
+                    <b>Total</b>
+                </td>
+                <td class="text-right">115.00 Dt</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<h3>Historique de la commande</h3>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td class="text-left">Date d'ajout</td>
+            <td class="text-left">Etat de la commande</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="text-left">09/01/2016</td>
+            <td class="text-left">En attente</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,39 @@
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+
+    filter_sets:
+        cache: ~
+        product_270:
+            quality: 75
+            filters:
+                thumbnail: { size: [270, 270], mode: inset }
+        product_870:
+            quality: 80
+            filters:
+                thumbnail: { size: [870, 380], mode: inset }
+        product_100:
+            quality: 80
+            filters:
+                thumbnail: { size: [100, 100], mode: inset }
+        product_47:
+            quality: 80
+            filters:
+                thumbnail: { size: [47, 47], mode: inset }
+        product_190:
+            quality: 80
+            filters:
+                thumbnail: { size: [190, 190], mode: inset }
+        product_220:
+            quality: 80
+            filters:
+                thumbnail: { size: [220, 220], mode: inset }
+        product_800:
+            quality: 80
+            filters:
+                thumbnail: { size: [800, 800], mode: inset }
+        product_88:
+            quality: 80
+            filters:
+                thumbnail: { size: [88, 88], mode: inset }

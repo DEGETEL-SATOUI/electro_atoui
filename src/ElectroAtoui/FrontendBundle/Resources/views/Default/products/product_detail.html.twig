@@ -1,0 +1,415 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% block titre %}Electro El Atoui - {{ product.name }}{% endblock %}
+
+{% block stylesheets %}
+<link href="{{ asset('frontend/css/front/jquery.fancybox.css') }}" rel="stylesheet" media="screen" />
+<link href="{{ asset('frontend/css/front/photoswipe.css') }}" rel="stylesheet">
+<link href="{{ asset('frontend/css/front/rating.min.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block javascripts %}
+<script src="{{ asset('frontend/js/front/jquery.easing.1.3.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/front/klass.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/front/code.photoswipe.jquery-3.0.5.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/front/code.photoswipe-3.0.5.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/front/jquery.elevatezoom.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/front/jquery.fancybox.js') }}" type="text/javascript"></script>
+<script src="{{ asset('frontend/js/front/rating.min.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block body_class %}product-product-33{% endblock %}
+
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+    {% if product.category %}
+      {% for category in product.category.parents %}
+        <li><a href="{{ path('_category_detail', { 'slug' : category.slug }) }}">{{ category.name }}</a></li>
+      {% endfor %}
+      <li><a href="{{ path('_category_detail', { 'slug' : product.category.slug }) }}">{{ product.category.name }}</a></li>
+    {% endif %}
+  <li><span>{{ product.name }}</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<div class="row">
+    {% for flashMessage in app.session.flashbag.get('success') %}
+        <div class="alert alert-success">
+            {{ flashMessage }}
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+    {% endfor %}
+
+    <div id="content" class="col-sm-12 product_page">
+        <div class="row product-content-columns">
+            <div class="col-sm-5 col-lg-7 product_page-left">
+                <div id="default_gallery" class="product-gallery">
+                    <div class="image-thumb">
+                        <div class="bx-wrapper">
+                            <div class="bx-viewport">
+                                <ul id="image-additional">
+                                    <li>
+                                        <a class="active" href="#" data-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-zoom-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}">
+                                            <img src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-zoom-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}">
+                                            <img src="{{ '/uploads/product.png' | imagine_filter('product_88') }}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-zoom-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}">
+                                        <img src="{{ '/uploads/product.png' | imagine_filter('product_88') }}" alt="">
+                                    </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-zoom-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}">
+                                          <img src="{{ '/uploads/product.png' | imagine_filter('product_88') }}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" data-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-zoom-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}">
+                                           <img src="{{ '/uploads/product.png' | imagine_filter('product_88') }}" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bx-controls bx-has-controls-direction">
+                                <div class="bx-controls-direction">
+                                  <a class="bx-prev disabled" href="">
+                                    <i class="fa fa-chevron-up"></i>
+                                  </a>
+                                  <a class="bx-next disabled" href="">
+                                    <i class="fa fa-chevron-down"></i>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="image">
+                        <div class="zoomWrapper">
+                            <img id="gallery_zoom" src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-zoom-image="{{ '/uploads/product.png' | imagine_filter('product_800') }}" alt="">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="full_gallery">
+                    <div class="bx-wrapper">
+                        <div class="bx-viewport">
+                            <ul id="gallery">
+                                <li>
+                                    <a href="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-something="something" data-another-thing="anotherthing">
+                                      <img src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" title="Aliquam eget" alt="Aliquam eget">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-something="something1" data-another-thing="anotherthing1">
+                                      <img src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" alt="Aliquam eget">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-something="something1" data-another-thing="anotherthing1">
+                                      <img src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" alt="Aliquam eget">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-something="something1" data-another-thing="anotherthing1">
+                                      <img src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" alt="Aliquam eget">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ '/uploads/product.png' | imagine_filter('product_800') }}" data-something="something1" data-another-thing="anotherthing1">
+                                      <img src="{{ '/uploads/product.png' | imagine_filter('product_800') }}" alt="Aliquam eget">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bx-controls bx-has-controls-direction">
+                            <div class="bx-controls-direction">
+                            <a class="bx-prev" href="">
+                              <i class="fa fa-chevron-left"></i>
+                            </a>
+                            <a class="bx-next" href="">
+                              <i class="fa fa-chevron-right"></i>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-7 col-lg-5 product_page-right">
+                <div class="general_info product-info">
+                    <h1 class="product-title">{{ product.name }}</h1>
+
+                    <div class="rating-section product-rating-status">
+                        <div class="rating">
+                            {% for index in 1..5 %}
+                                {% if index <= product.rateValue %}
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star fa-stack-2x"></i>
+                                        <i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                {% else %}
+                                    <span class="fa fa-stack">
+                                        <i class="fa fa-star-o fa-stack-2x"></i>
+                                    </span>
+                                {% endif %}
+                            {% endfor %}
+                            &nbsp; &nbsp;
+                            <span>{{ product.rateCount }} avis</span>
+                            {% if product.isRating(app.user) == false %}
+                                /
+                                <a onclick="document.getElementById('tab-review').scrollIntoView();">Ajouter un avis</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="price-section price">
+                        {% if product.forSale %}
+                          <span class="price-new">{{ product.salePrice }} DT</span>
+                          <span class="price-old">{{ product.price }} DT</span>
+                        {% else %}
+                          <span class="price-new">{{ product.price }} DT</span>
+                        {% endif %}
+                    </div>
+                    <ul class="list-unstyled product-section">
+                        <li>Catégorie(s): <small>{{ product.categories|join(', ') }}</small></li>
+                        <li>Réference: <span>{{ product.reference }}</span></li>
+                        <li>Disponibilité: <span>{% if product.isAvailableToBuy %}En Stock{% else %}Expiré{% endif %}</span></li>
+                    </ul>
+                </div>
+                <div id="product">
+
+                    <div class="product-options form-horizontal">
+                        <h3>Options Disponible</h3>
+                        <div class="form-group">
+                            <label>Pas d'options pour ce produit</label>
+                        </div>
+                    </div>
+
+                    <div class="product-reccurings">
+                    </div>
+
+                    <div class="form-group form-horizontal">
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" for="input-quantity">Qantité</label>
+                            <div class="col-sm-2">
+                                <input type="number" name="quantity" id="p-quantity" value="1" min="1" max="{{ product.quantity }}">
+                            </div>
+                        </div>
+                        <input type="hidden" id="product_slug" value="{{ product.slug }}">
+                        {% if product.isAvailableToBuy %}
+                          <button type="button" id="button-cart" data-loading-text="Loading..." class="btn btn-add" onclick="addItem('{{ product.id }}');">Ajouter au panier</button>
+                        {% endif %}
+                    </div>
+                    <ul class="product-buttons">
+                        <li>
+                            <button class="btn btn-icon" onclick="">
+                                <i class="fa fa-heart"></i>
+                                <span class="hidden-xs hidden-sm">Ajouter au favories</span>
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" class="btn btn-icon" onclick="">
+                                <i class="fa fa-exchange"></i>
+                                <span class="hidden-xs hidden-sm">Comparer ce produit</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="tab-description" class="product-desc product-section">
+            <h3 class="product-section_title">Description</h3>
+            <p>{{ product.description|raw }}</p>
+            <div class="clearfix"></div>
+        </div>
+
+        <div id="tab-review" class="product-reviews product-section">
+            {% if product.rate %}
+            <h3 class="product-section_title">Avis client ({{ product.rateCount }})</h3>
+            <div id="review">
+            {% for vote in product.rate.votes %}
+                <div class="review-item">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="review-score">
+                                {% for index in 1..5 %}
+                                    {% if index <= vote.value %}
+                                        <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                            <i class="fa fa-star-o fa-stack-2x"></i>
+                                        </span>
+                                    {% else %}
+                                        <span class="fa fa-stack">
+                                            <i class="fa fa-star-o fa-stack-2x"></i>
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <div class="review-author"><strong>{{ vote.user.username }}</strong>
+                            </div>
+                            <div class="review-date">{{ vote.createdAt|date("d/m/Y") }}</div>
+                        </div>
+                        <div class="col-sm-9">
+                           {{ vote.comment|nl2br }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="text-right"></div>
+            </div>
+            {% endif %}
+
+            <div id="form_review"></div>
+
+            {% if product.isRating(app.user) == false %}
+                <form id="review" class="form-horizontal">
+                    <div class="review-form-title">
+                        <h3 class="product-section_title close-tab" id="reviews_form_title">Ajouter un avis</h3>
+                    </div>
+                    <div class="product-review-form" id="reviews_form" style="display: none;">
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3" for="input-review">Votre commentaire</label>
+                            <div class="col-sm-9">
+                                <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="control-label col-sm-3">Vote</label>
+                            <div class="col-sm-9">
+                                <ul class="c-rating"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-9 col-sm-offset-3">
+                                <div class="pull-right">
+                                    <button type="button" id="button-review" data-loading-text="Loading..." class="btn btn-primary">Envoyer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+
+    {% if related_products %}
+        <div class="related-products product-section">
+            <h3 class="product-section_title">Produit Similaires</h3>
+            <div class="related-slider">
+                {% for product in related_products %}
+                <div>
+                    <div class="product-thumb transition">
+                        <div class="image">
+                            <a class="lazy lazy-loaded" style="padding-bottom: 100%" href="{{ path('_product_detail', { 'slug' : product.slug }) }}">
+                                <img alt="{{ product.name }}"
+                                    class="img-responsive"
+                                    data-src="{{ '/uploads/product.png' | imagine_filter('product_270') }}"
+                                    src="{{ '/uploads/product.png' | imagine_filter('product_270') }}">
+                            </a>
+                        </div>
+                        <div class="caption">
+                            <div class="name">
+                                <a href="{{ path('_product_detail', { 'slug' : product.slug }) }}">{{ product.name }}</a>
+                            </div>
+                            <p>{{ product.shortDescription[:30] ~ '...' }}</p>
+                            <div class="rating">
+                                {% for index in 1..5 %}
+                                    {% if index <= product.rateValue %}
+                                        <span class="fa fa-stack">
+                                            <i class="fa fa-star fa-stack-2x"></i>
+                                            <i class="fa fa-star-o fa-stack-2x"></i>
+                                        </span>
+                                    {% else %}
+                                        <span class="fa fa-stack">
+                                            <i class="fa fa-star-o fa-stack-2x"></i>
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                            <p class="price">
+                                {% if product.forSale %}
+                                  <span class="price-new">{{ product.salePrice }} DT</span>
+                                  <span class="price-old">{{ product.price }} DT</span>
+                                {% else %}
+                                  <span class="price-new">{{ product.price }} DT</span>
+                                {% endif %}
+                            </p>
+                        </div>
+                        <div class="cart-button">
+                            <a class="product-btn-add" href="{{ path('_product_detail', { 'slug' : product.slug }) }}">
+                                <i class="material-design-shopping232"></i>
+                                <span class="hidden-xs hidden-sm hidden-md">Je le veux</span>
+                            </a>
+                            <button class="product-btn" type="button" data-toggle="tooltip" title="Ajouter au favories" onclick="">
+                                <i class="fa fa-heart"></i>
+                            </button>
+                            <button class="product-btn" type="button" data-toggle="tooltip" title="Comparer ce produit" onclick="">
+                                <i class="fa fa-exchange"></i>
+                            </button>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var myPhotoSwipe = $("#gallery a").photoSwipe({
+            enableMouseWheel: false,
+            enableKeyboard: false,
+            captionAndToolbarAutoHideDelay: 0
+        });
+    });
+
+    jQuery('#button-review').on('click', function() {
+        jQuery.ajax({
+            url: Routing.generate('_product_rate', {slug: jQuery('#product_slug').val()}),
+            type: 'post',
+            dataType: 'json',
+            data: {
+                'comment': jQuery('textarea[name=\'text\']').val(),
+                'rating': my_rating.getRating()
+            },
+            beforeSend: function() {
+                jQuery('#button-review').button('loading');
+            },
+            complete: function() {
+                jQuery('#button-review').button('reset');
+            },
+            success: function(data) {
+                jQuery('.alert-success, .alert-danger').remove();
+                if (data['error']) {
+                    jQuery('#form_review').after('<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> ' + data['error'] + '</div>');
+                }
+                if (data['success']) {
+                    jQuery('#form_review').after('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + data['success'] + '</div>');
+                    jQuery('textarea[name=\'text\']').val('');
+                    jQuery('#review').hide();
+                }
+                setTimeout(function() {$('.alert').fadeOut(1000)},3000)
+            }
+        });
+    });
+
+    jQuery('#reviews_form_title').addClass('close-tab');
+    jQuery('#reviews_form_title').on("click", function(){
+        if (jQuery(this).hasClass('close-tab')) {
+            jQuery(this).removeClass('close').parents('#tab-review').find('#reviews_form').slideToggle();
+        } else {
+            jQuery(this).addClass('close-tab').parents('#tab-review').find('#reviews_form').slideToggle();
+        }
+    });
+</script>
+{% endblock %}

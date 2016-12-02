@@ -1,0 +1,18 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block titre %}Electro El Atoui - Mot de passe oublié{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_backend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Mot de passe oublié</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <h1>Mot de passe oublié?</h1>
+    <div class="alert alert-success">{{ 'resetting.check_email'|trans({'%email%': email}) }}</div>
+{% endblock %}

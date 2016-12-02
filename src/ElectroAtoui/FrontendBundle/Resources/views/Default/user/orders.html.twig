@@ -1,0 +1,51 @@
+{% extends "FrontendBundle:Default:account.html.twig" %}
+
+{% block titre %}Electro El Atoui - Mes commandes{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_frontend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><a href="{{ path('_user_account') }}"><span>Mon compte</span></a></li>
+  <li><span>Mes commandes</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+<h1>Mes commandes</h1>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td class="text-right">Référence</td>
+                <td class="text-left">Etat de la commande</td>
+                <td class="text-left">Date d'ajout</td>
+                <td class="text-right">N° de Produits</td>
+                <td class="text-left">Client</td>
+                <td class="text-right">Total</td>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-right">****</td>
+                <td class="text-left">En attente</td>
+                <td class="text-left">09/01/2016</td>
+                <td class="text-right">1</td>
+                <td class="text-left">Atoui Smi</td>
+                <td class="text-right">115.00 Dt</td>
+                <td class="text-right">
+                    <a href="{{ path('_user_order') }}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="Voir">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                    <a href="{{ path('_user_facture') }}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="Télécharger">
+                        <i class="fa fa-eye"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="text-right"></div>
+{% endblock %}

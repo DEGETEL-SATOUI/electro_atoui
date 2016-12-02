@@ -1,0 +1,148 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block titre %}Electro El Atoui - Inscription{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_backend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Inscription</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <h1>Inscription</h1>
+    <p>
+        Si vous avez déjà un compte avec nous, s'il vous plaît connecter vous à la page de
+        <a href="{{ path('fos_user_security_login') }}"><b>connexion</b></a>.
+    </p>
+    {{ form_start(form, { 'action': path('fos_user_registration_register'), 'attr': { 'class': 'form-horizontal' } }) }}
+        <fieldset id="account">
+            <legend>Informations personnelles</legend>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label">Affixe</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.gender, {'label_attr': {'class': 'radio-inline'}}) }}
+                    {% if form_errors(form.profile.gender) %}
+                      <div class="text-danger">{{ form_errors(form.profile.gender) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-firstname">Nom</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.first_name) }}
+                    {% if form_errors(form.profile.first_name) %}
+                      <div class="text-danger">{{ form_errors(form.profile.first_name) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-lastname">Prénom</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.last_name) }}
+                    {% if form_errors(form.profile.last_name) %}
+                      <div class="text-danger">{{ form_errors(form.profile.last_name) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-email">E-Mail</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    {% if form_errors(form.email) %}
+                      <div class="text-danger">{{ form_errors(form.email) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-telephone">Telephone</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.phone, {'attr': {'placeholder': '00 000 000'}}) }}
+                    {% if form_errors(form.profile.phone) %}
+                      <div class="text-danger">{{ form_errors(form.profile.phone) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset id="address">
+            <legend>Adresse</legend>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-address-1">Adresse</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.address) }}
+                    {% if form_errors(form.profile.address) %}
+                      <div class="text-danger">{{ form_errors(form.profile.address) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="input-address-2">Complément Adresse</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.address_complement) }}
+                    {% if form_errors(form.profile.address_complement) %}
+                      <div class="text-danger">{{ form_errors(form.profile.address_complement) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-city">Ville</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.city) }}
+                    {% if form_errors(form.profile.city) %}
+                      <div class="text-danger">{{ form_errors(form.profile.city) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-postcode">Code Postal</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.profile.zip_code, {'attr': {'placeholder': '0000'}}) }}
+                    {% if form_errors(form.profile.zip_code) %}
+                      <div class="text-danger">{{ form_errors(form.profile.zip_code) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Mot de passe</legend>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-confirm">Pseudo</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                    {% if form_errors(form.username) %}
+                      <div class="text-danger">{{ form_errors(form.username) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-password">Mot de passe</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                    {% if form_errors(form.plainPassword.first) %}
+                      <div class="text-danger">{{ form_errors(form.plainPassword.first) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group required">
+                <label class="col-sm-3 control-label" for="input-confirm">Confirmation mot de passe</label>
+                <div class="col-sm-9">
+                    {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                    {% if form_errors(form.plainPassword.second) %}
+                      <div class="text-danger">{{ form_errors(form.plainPassword.second) }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_widget(form._token) }}
+            </div>
+        </fieldset>
+        <div class="buttons">
+            <div class="pull-right">
+                <input type="submit" value="Continuer" class="btn btn-primary">
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% block titre %}Electro El Atoui - Mot de passe oublié{% endblock %}
+
+{% block location %}
+<ul class="breadcrumb">
+  <li><a href="{{ path('_backend_homepage') }}"><i class="fa fa-home"></i></a></li>
+  <li><span>Mot de passe oublié</span></li>
+</ul>
+{% endblock %}
+
+
+{% block body %}
+    <h1>Mot de passe oublié ?</h1>
+    <p>Compléter le formulaire, votre mot de passe sera alors réinitialiser.<br />
+       Une fois validé, vous devrez utiliser le nouveau mot de passe que vous avez défini.
+    </p>
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'form-horizontal' } }) }}
+        <div class="form-group required">
+            <label class="col-sm-2 control-label">Mot de passe</label>
+            <div class="col-sm-10">
+                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.plainPassword.first) %}
+                  <div class="text-danger">{{ form_errors(form.plainPassword.first) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group required">
+            <label class="col-sm-2 control-label">Vérification</label>
+            <div class="col-sm-10">
+                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.plainPassword.second) %}
+                  <div class="text-danger">{{ form_errors(form.plainPassword.second) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group required">
+          {{ form_widget(form._token) }}
+        </div>
+        <div class="buttons">
+            <div class="pull-right">
+                <input type="submit" value="Continuer" class="btn btn-primary">
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends "FrontendBundle::base.html.twig" %}
+
+{% block titre %}Electro El Atoui - Mon compte{% endblock %}
+
+{% block boxe_category %}
+<div class="box account info">
+    <div class="box-heading">
+        <h3>Mon compte</h3>
+    </div>
+    <div class="box-content">
+        <ul>
+            <li><a href="{{ path('_user_profile') }}">Modifier mon profil</a></li>
+            <li><a href="{{ path('fos_user_change_password') }}">Changer Mon mot de passe</a></li>
+            <li><a href="{{ path('_user_favories') }}">Mes préférés</a></li>
+            <li><a href="{{ path('_user_address') }}">Mes adresses</a></li>
+            <li><a href="{{ path('fos_user_security_logout') }}">Se déconnecter</a></li>
+        </ul>
+    </div>
+</div>
+<div class="box account info">
+    <div class="box-heading">
+        <h3>Mes commandes</h3>
+    </div>
+    <div class="box-content">
+        <ul>
+            <li><a href="{{ path('_user_orders') }}">Historique</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block boxes %}{% endblock %}

@@ -1,0 +1,17 @@
+_product_detail:
+    path:     /detail/{slug}
+    defaults: { _controller: FrontendBundle:Product:detail }
+    options:
+        expose: true
+
+_product_search:
+    path:     /search
+    defaults: { _controller: FrontendBundle:Product:search }
+    options:
+        expose: true
+
+_product_rate:
+    path:     /rate/{slug}
+    defaults: { _controller: FrontendBundle:Product:rate }
+    options:
+        expose: true

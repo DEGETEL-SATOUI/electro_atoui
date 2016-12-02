@@ -1,0 +1,26 @@
+_frontend_homepage:
+    path:     /
+    defaults: { _controller: FrontendBundle:Home:index }
+
+_user_frontend:
+    resource: "@FrontendBundle/Resources/config/routing/routing_user.yml"
+    prefix: /
+
+_contact_frontend:
+    resource: "@FrontendBundle/Resources/config/routing/routing_contact.yml"
+    prefix: /contact
+
+_cart_frontend:
+    resource: "@FrontendBundle/Resources/config/routing/routing_cart.yml"
+    prefix: /cart
+
+_product_frontend:
+    resource: "@FrontendBundle/Resources/config/routing/routing_product.yml"
+    prefix: /product
+
+_category_frontend:
+    resource: "@FrontendBundle/Resources/config/routing/routing_category.yml"
+    prefix: /category
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

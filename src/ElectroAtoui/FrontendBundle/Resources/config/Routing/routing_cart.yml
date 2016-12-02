@@ -1,0 +1,37 @@
+_cart:
+    path:     /
+    defaults: { _controller: FrontendBundle:Cart:cart }
+    options:
+        expose: true
+
+_cart_add:
+    path:     /add
+    defaults: { _controller: FrontendBundle:Cart:add }
+    requirements:
+        _method: POST
+    options:
+        expose: true
+
+_cart_update:
+    path:     /update
+    defaults: { _controller: FrontendBundle:Cart:update }
+    requirements:
+        _method: POST
+    options:
+        expose: true
+
+_cart_remove:
+    path:     /remove
+    defaults: { _controller: FrontendBundle:Cart:remove }
+    requirements:
+        _method: POST
+    options:
+        expose: true
+
+_cart_clear:
+    path:     /clear
+    defaults: { _controller: FrontendBundle:Cart:clear }
+    requirements:
+        _method: POST
+    options:
+        expose: true

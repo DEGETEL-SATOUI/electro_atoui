@@ -1,0 +1,58 @@
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /my_account
+
+_user_profile:
+    path: /my_account/profile
+    defaults: { _controller: FrontendBundle:User:profile }
+    
+_user_orders:
+    path: /my_account/orders
+    defaults: { _controller: FrontendBundle:User:orders }
+
+_user_facture:
+    path: /my_account/order/download
+    defaults: { _controller: FrontendBundle:User:downloadFacture }
+
+_user_order:
+    path: /my_account/order
+    defaults: { _controller: FrontendBundle:User:order }
+
+_user_favories:
+    path: /my_account/favories
+    defaults: { _controller: FrontendBundle:User:favories }
+
+_user_add_favorie:
+    path: /my_account/add_favorie
+    defaults: { _controller: FrontendBundle:User:addFavorie }
+
+_user_delete_favorie:
+    path: /my_account/delete_favorie
+    defaults: { _controller: FrontendBundle:User:deleteFavorie }
+
+_user_address:
+    path: /my_account/address
+    defaults: { _controller: FrontendBundle:User:address }
+
+_user_add_address:
+    path: /my_account/add_address
+    defaults: { _controller: FrontendBundle:User:addAddress }
+
+_user_update_address:
+    path: /my_account/update_address
+    defaults: { _controller: FrontendBundle:User:updateAddress }
+
+_user_account:
+    path: /my_account
+    defaults: { _controller: FrontendBundle:Home:account }
